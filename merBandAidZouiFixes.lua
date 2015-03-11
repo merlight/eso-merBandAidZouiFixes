@@ -25,27 +25,3 @@ if STORE_WINDOW_GAMEPAD and STORE_WINDOW_GAMEPAD.RepairMessageBox then
         return
     end
 end
-
-
---[====================================[
-    Alchemy Clear Selection Glitch Bug
-    ----------------------------------
-    http://www.esoui.com/forums/showthread.php?t=4368
-
-    [votan] At Alchemy Crafting Station:
-    If you don't have unlocked the third slot and click "Clear Selection", the third slot gets visible in the upper left corner.
-
---]====================================]
-
--- fix contributed by votan
-local orgAlchemyClearSelections = ALCHEMY.ClearSelections
-function ALCHEMY:ClearSelections()
-    orgAlchemyClearSelections(self)
-    self.reagentSlots[3]:SetHidden(not ZO_Alchemy_IsThirdAlchemySlotUnlocked())
-end
-
-function myDEBUG_COMMANDS.alchemy()
-    local tmp = orgAlchemyClearSelections
-    orgAlchemyClearSelections = ALCHEMY.ClearSelections
-    ALCHEMY.ClearSelections = tmp
-end
