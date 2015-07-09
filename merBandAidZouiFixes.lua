@@ -38,3 +38,16 @@ if GUILD_RANKS and GUILD_RANKS.rankNameEdit then
         self:SetHandler("OnTextChanged", ZO_GuildRankNameEdit_OnTextChanged)
     end
 end
+
+
+--[====================================================================[
+    Fix tooltips for scrolls and emperor alliance bonuses.
+
+    http://www.esoui.com/forums/showpost.php?p=21926&postcount=72
+--]====================================================================]
+
+BONUS_TYPE_HOME_KEEPS = BONUS_TYPE_HOME_KEEPS or 1
+BONUS_TYPE_ENEMY_KEEPS = BONUS_TYPE_ENEMY_KEEPS or 2
+BONUS_TYPE_DEFENSIVE_SCROLLS = BONUS_TYPE_DEFENSIVE_SCROLLS or 3
+BONUS_TYPE_OFFENSIVE_SCROLLS = BONUS_TYPE_OFFENSIVE_SCROLLS or 4
+BONUS_TYPE_EMPEROR = BONUS_TYPE_EMPEROR or 5
