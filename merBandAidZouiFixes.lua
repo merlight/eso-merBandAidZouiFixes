@@ -18,3 +18,23 @@ local myNAME = "merBandAidZouiFixes"
 if ZO_ObjectiveCaptureMeter then
     ZO_ObjectiveCaptureMeter:SetAlpha(0)
 end
+
+
+--[====================================================================[
+    Prevent guild scene freezing due to specific custom rank names.
+
+    http://www.esoui.com/forums/showthread.php?t=4867
+--]====================================================================]
+
+if GUILD_RANKS and GUILD_RANKS.rankNameEdit then
+    local zorg_rankNameEdit_SetText = GUILD_RANKS.rankNameEdit.SetText
+
+    function GUILD_RANKS.rankNameEdit:SetText(name)
+        -- disable OnTextChanged handler
+        self:SetHandler("OnTextChanged", nil)
+        -- initialize the edit field using original SetText
+        zorg_rankNameEdit_SetText(self, name)
+        -- restore original handler for catching user input
+        self:SetHandler("OnTextChanged", ZO_GuildRankNameEdit_OnTextChanged)
+    end
+end
