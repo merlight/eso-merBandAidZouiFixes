@@ -51,3 +51,20 @@ BONUS_TYPE_ENEMY_KEEPS = BONUS_TYPE_ENEMY_KEEPS or 2
 BONUS_TYPE_DEFENSIVE_SCROLLS = BONUS_TYPE_DEFENSIVE_SCROLLS or 3
 BONUS_TYPE_OFFENSIVE_SCROLLS = BONUS_TYPE_OFFENSIVE_SCROLLS or 4
 BONUS_TYPE_EMPEROR = BONUS_TYPE_EMPEROR or 5
+
+
+--[====================================================================[
+    Fix map pin locations inside Daggerfall Outlaws Refuge.
+
+    http://i.imgur.com/akJh46V.jpg
+--]====================================================================]
+
+local zorg_MapPin_SetLocation = ZO_MapPin.SetLocation
+
+function ZO_MapPin:SetLocation(xLoc, yLoc, radius)
+    if GetCurrentMapZoneIndex() == 423 then -- Daggerfall Outlaws Refuge
+        xLoc = xLoc * 0.9 + 0.06
+        yLoc = yLoc * 0.9 + 0.01
+    end
+    zorg_MapPin_SetLocation(self, xLoc, yLoc, radius)
+end
